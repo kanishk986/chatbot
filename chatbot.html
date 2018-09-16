@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	
+#user{
+	height: 40px;
+	width: 300px;
+
+background-color: #c6d6dacc;
+box-shadow: 5px 5px;
+	border-radius: 10px;
+}
+#chatbot{
+	width: 300px;
+	height: 60px;
+	background-color:#c6d6dacc	;
+	box-shadow: 5px 5px;
+	border-radius: 10px;
+}
+#input{
+	height: 40px;
+	width: 300px;
+
+background-color: #c6d6dacc;
+box-shadow: 5px 5px;
+	border-radius: 10px;
+
+}
+.margin{
+	margin-top: 20px;
+
+}
+#main{
+height: 500px;
+width: 400px;
+/*border: 1px solid black;*/	
+ box-shadow: 5px 5px;
+	border-radius: 20px;
+	background-color:#05232dbd;
+
+	font-size: 25px;
+	font-style: italic;
+	padding-right: 400px;
+
+}
+#dis{
+	display: flex;
+	height:1200px;
+	width:100%;
+	align-items: center;
+    justify-content:space-around;
+
+    background-image: url('chatbot/image.png');
+   
+     background-size: cover;
+}
+h3{
+	color: #ffffffd9;
+}
+</style>
+
+	
+</head>
+<body >
+<div id="dis">
+
+<div id ="main" >
+ <div id="margin"><h3>user:</h1><div id="user"></div></div>
+ <div class="margin" ><h3>chatbot:</h3><div id="chatbot" ></div></div>
+
+<div class="margin"> <h3>input:</h3><div><input  id="input" type="text" id="input"  placeholder="write anything..."></div></div>
+
+</div>
+</div>
+
+
+
+
+<script type ="text/javascript" >
+
+
+var trigger=[                                        //add  more trigger and replies to make it more responsive
+
+["hi","hey"],
+["how are you","whats up"],
+["who are you","tell about yourself"],
+["what is your name"],
+["your favourite movie is","movie you watch"],
+["i feel bored","i feel bad","i feel sad"],
+["do you have any girlfriend"],
+["who's birthday is thisss"],
+["bii"]
+]
+
+
+var reply=[
+
+["Hi","HEllo"],
+["Fine","Good!","Great!what about you?"],
+["Im a bot"],
+["my name is vector"],
+["i dont watch movie","i dont like movies"],
+["watch tv","go play","you can sleep"],
+["No!! :("],
+["karan's birthday it is !!!!! partyyy!"],
+["okk bii!! tc"]
+
+]
+	var def=["please train me! :(","didn't get you :("]
+// console.log(trigger[0][0]);
+
+document.querySelector("#input").addEventListener("keypress",function(e){
+
+var key=e.which || e.keyCode;
+if (key==13){
+   
+   var input=document.getElementById("input").value;
+   document.getElementById("user").innerHTML=input;
+
+
+   output(input);
+
+
+}
+
+});
+
+
+
+function output(input){
+
+try{
+	var out=input+"="+eval(input);
+
+}
+
+catch(e){
+
+	var text=(input.toLowerCase())
+	text=text.replace(/whats/g,"what is").replace(/bye/g,"bii");
+	
+     if(comp(trigger,reply,text)){
+      out=comp(trigger,reply,text)
+      }
+      else{
+    	var out=def[Math.floor(Math.random()*def.length)];
+      } 
+  
+ }
+
+document.querySelector("#chatbot").innerHTML=out;
+document.querySelector("#input").value="";
+
+}
+
+
+
+
+function comp(arr,array,string){
+
+  for (var x=0;x<arr.length;x++){
+     for(var y=0;y<arr.length;y++){
+
+       if(arr[x][y]==string){
+    //console.log(arr[x][y]);
+       var items=array[x]
+       var item=items[Math.floor(Math.random()*items.length)];
+
+       }
+
+
+    }
+
+  }
+
+return item;
+
+}
+
+
+</script>
+
+</body>
+</html>
